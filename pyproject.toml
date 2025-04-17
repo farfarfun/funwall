@@ -1,0 +1,30 @@
+[project]
+name = "funwall"
+version = "1.1.1"
+description = "funv2ray"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+[[project.authors]]
+name = "牛哥"
+email = "niuliangtao@qq.com"
+
+[[project.authors]]
+name = "farfarfun"
+email = "farfarfun@qq.com"
+
+[[project.maintainers]]
+name = "牛哥"
+email = "niuliangtao@qq.com"
+
+[[project.maintainers]]
+name = "farfarfun"
+email = "farfarfun@qq.com"
+
+[project.urls]
+Organization = "https://github.com/farfarfun"
+Repository = "https://github.com/farfarfun/funv2ray"
+Releases = "https://github.com/farfarfun/funv2ray/releases"
+
+[tool.setuptools]
+license-files = []
