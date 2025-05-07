@@ -15,6 +15,7 @@
 
 | 客户端 | Windows | Linux | MAC | Android | IOS |
 | :--- | :---: | :---: | :---: | :---: | :--:| 
+| [v2rayA](https://v2raya.org) | 支持  | 支持 | 支持 | 支持 | 支持 |
 | [v2ray](https://github.com/bwgvps/v2ray-tutorial) | 支持  | - | 支持 | 支持 | 支持 |
 | [NekoBox](https://matsuridayo.github.io/) | [支持](https://github.com/MatsuriDayo/nekoray) | [支持](https://github.com/MatsuriDayo/nekoray) | - | [支持](https://github.com/MatsuriDayo/NekoBoxForAndroid) | - |
 
