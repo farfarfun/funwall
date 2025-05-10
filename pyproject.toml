@@ -1,6 +1,6 @@
 [project]
 name = "funwall"
-version = "1.1.2"
+version = "1.1.3"
 description = "funv2ray"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -23,8 +23,8 @@ email = "farfarfun@qq.com"
 
 [project.urls]
 Organization = "https://github.com/farfarfun"
-Repository = "https://github.com/farfarfun/funv2ray"
-Releases = "https://github.com/farfarfun/funv2ray/releases"
+Repository = "https://github.com/farfarfun/funwall"
+Releases = "https://github.com/farfarfun/funwall/releases"
 
 [tool.setuptools]
 license-files = []
