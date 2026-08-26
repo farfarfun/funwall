@@ -3,8 +3,8 @@ name = "funwall"
 version = "1.1.5"
 description = "funv2ray"
 readme = "README.md"
-requires-python = ">=3.8"
-dependencies = [ "funbuild>=1.6.3",]
+requires-python = ">=3.10"
+dependencies = []
 [[project.authors]]
 name = "牛哥"
 email = "niuliangtao@qq.com"
@@ -25,6 +25,9 @@ email = "farfarfun@qq.com"
 Organization = "https://github.com/farfarfun"
 Repository = "https://github.com/farfarfun/funwall"
 Releases = "https://github.com/farfarfun/funwall/releases"
+
+[dependency-groups]
+dev = [ "nltbuild>=1.6.65",]
 
 [tool.setuptools]
 license-files = []
