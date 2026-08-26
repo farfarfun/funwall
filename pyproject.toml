@@ -27,7 +27,7 @@ Repository = "https://github.com/farfarfun/funwall"
 Releases = "https://github.com/farfarfun/funwall/releases"
 
 [dependency-groups]
-dev = [ "nltbuild>=1.6.65",]
+dev = [ "funbuild>=1.6.66",]
 
 [tool.setuptools]
 license-files = []
