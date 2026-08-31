@@ -31,7 +31,7 @@ https://github.com/nelvko/clash-for-linux-install
 | 汇总机场4  |  [官网](https://jichangtuijian.com/ssr-v2ray%E4%B8%93%E7%BA%BF%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90.html#%E6%9C%BA%E5%9C%BA%E4%BC%98%E6%83%A0)|
 | 光速机场   | [官网](https://gsgs.nxxbbf.com/#/register?code=jM8I7LU2) | [测评](https://duangks.com/archives/208/) | 12元年付:120GB/月|
 | 性价比机场  | [官网](https://xn--6nq44r2uh9rhj7f.net/#/plan)|
-| 良心云    | [官网]([https://xn--9kqz23b19z.com/#/dashboard](https://xn--9kqz23b19z.com/#/register?code=2ijKyMLp)) | [测评](https://duangks.com/archives/204/)|2元月付:100GB/月, 21元:1TB/永久 |
+| 良心云    | [官网](https://xn--9kqz23b19z.com/#/register?code=2ijKyMLp) | [测评](https://duangks.com/archives/204/)|2元月付:100GB/月, 21元:1TB/永久 |
 | 中国国际机场 | [官网](https://hi.hanamaki.dev/public)|
 | matcha | [官网](https://matcha.su/#/dashboard)|
 
