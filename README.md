@@ -1,4 +1,23 @@
 
+# funwall
+
+funwall 是科学上网资源索引，汇总代理服务端安装脚本、跨平台客户端与机场信息。
+Python 包仅提供版本信息，方便从 PyPI 跟踪索引版本。
+
+## 安装
+
+```bash
+pip install funwall
+```
+
+## 最小示例
+
+```python
+import funwall
+
+print(funwall.__version__)
+```
+
 # 服务端推荐
 
 | 工具 | 文档 | 代码 | 安装 | 
@@ -35,4 +54,15 @@ https://github.com/nelvko/clash-for-linux-install
 | 中国国际机场 | [官网](https://hi.hanamaki.dev/public)|
 | matcha | [官网](https://matcha.su/#/dashboard)|
 
+---
 
+## 关于 farfarfun
+
+[farfarfun](https://github.com/farfarfun) 是一个专注于实用工具库的开源组织，
+涵盖云存储、数据处理、AI、多媒体与开发工具链等方向。
+
+- 🏠 组织主页：<https://github.com/farfarfun>
+- 📦 PyPI：<https://pypi.org/user/niuliangtao/>
+- 📧 联系：farfarfun@qq.com
+
+本项目基于 [MIT](LICENSE) 协议开源。

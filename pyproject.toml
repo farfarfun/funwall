@@ -1,9 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "funwall"
-version = "1.1.6"
-description = "funv2ray"
+version = "1.1.7"
+description = "科学上网资源清单，汇总代理服务端安装脚本、跨平台客户端与机场信息"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = []
 [[project.authors]]
 name = "牛哥"
@@ -22,12 +28,19 @@ name = "farfarfun"
 email = "farfarfun@qq.com"
 
 [project.urls]
+Homepage = "https://pypi.org/project/funwall/"
 Organization = "https://github.com/farfarfun"
 Repository = "https://github.com/farfarfun/funwall"
 Releases = "https://github.com/farfarfun/funwall/releases"
 
 [dependency-groups]
-dev = [ "funbuild>=1.6.66",]
+dev = ["pytest>=7.0.0", "ruff>=0.9.0"]
 
-[tool.setuptools]
-license-files = []
+[tool.hatch.build.targets.wheel]
+packages = ["src/funwall"]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
