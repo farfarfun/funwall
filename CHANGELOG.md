@@ -11,6 +11,22 @@
   - `tests/smoke_test.sh` —— 23 项冒烟测试，用 mock `systemctl`/`init.d` 执行，不依赖真实服务或 root；
   - `.github/FUNDING.yml`。
 - README 增加「自建服务端脚本（原 funSSR）」与「第三方代码与授权」两节。
+- 恢复 `run` 子命令，并实现真正的前台运行语义（容器部署和看实时日志用）。并入时它被整体
+  去掉了，理由写的是「无法前台附着已安装服务」——「附着」到一个已经跑着的进程上确实做不到，
+  但 `run` 要的不是附着，而是照该服务自己的前台命令在当前终端里跑一份，这是做得到的。
+  实现上不解析 systemd 的 `ExecStart`（里面可能带未展开的变量，直接 exec 会静默丢参数），
+  而是按服务分别写出前台命令：`ssr`/`ssrmu` 走 `python server.py`（与上游 init 脚本一致，
+  只去掉 `nohup` 和 `&`），`trojan`/`v2ray` 直接 exec 已安装的二进制。
+- `run` 不接管已有进程：服务已经在运行时直接报错并提示先 `stop`，不会再起第二份去抢同一个
+  端口（抢端口报出来的错往往跟端口无关，很难查）。判不出状态时（容器里只装了二进制、
+  既无 init 脚本也无 systemd 单元）仍照常前台运行。
+- `run` 查找服务二进制和配置的路径可用 `FUNWALL_SSR_DIR`、`FUNWALL_SSR_CONFIG`、
+  `FUNWALL_SSRMU_DIR`、`FUNWALL_TROJAN_BIN`、`FUNWALL_TROJAN_CONFIG`、`FUNWALL_V2RAY_BIN`、
+  `FUNWALL_V2RAY_CONFIG` 覆盖；对应的 `FUNSSR_` 旧名同样作为兜底被识别。
+- 冒烟测试新增「`run` 的真前台语义」与「`run` 不接管已有进程」两节（共 42 项）：用长驻的
+  假服务实测 `run` 阻塞在前台、服务 PID 与 `setup.sh` 的 PID 相同（`exec` 链完整）、
+  SIGINT/SIGTERM 直达服务并透传退出码、运行期间就有 stdout/stderr 输出、退出后不留孤儿进程。
+  只用立刻退出的 mock 是测不出前台语义的——那样把 `exec` 换成 `nohup ... &` 也照样全绿。
 
 ### 变更
 
