@@ -6,7 +6,7 @@ root_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 usage() {
 	cat <<'EOF'
 用法:
-  scripts/setup.sh {start|stop|restart} {ssr|ssrmu|trojan|v2ray} {dev|prod}
+  scripts/setup.sh {start|stop|restart|run} {ssr|ssrmu|trojan|v2ray} {dev|prod}
   scripts/setup.sh status [ssr|ssrmu|trojan|v2ray] [dev|prod]
 
 参数顺序为 action、service、environment。未指定参数的 status 会汇总所有服务和环境。
@@ -64,7 +64,7 @@ if [[ "$action" == status ]]; then
 fi
 
 [[ $# -eq 3 ]] || { usage >&2; exit 2; }
-case "$action" in start|stop|restart) ;; *) usage >&2; exit 2 ;; esac
+case "$action" in start|stop|restart|run) ;; *) usage >&2; exit 2 ;; esac
 valid_service "$2" || { echo "不支持的服务: $2" >&2; exit 2; }
 [[ "$3" == dev || "$3" == prod ]] || { echo "环境必须是 dev 或 prod" >&2; exit 2; }
 dispatch "$action" "$2" "$3"

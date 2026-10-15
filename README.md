@@ -66,17 +66,34 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/farfarfun/funwa
 ```bash
 scripts/setup.sh start ssrmu dev     # 启动已安装的开发 init 服务
 scripts/setup.sh start ssrmu prod    # 启动已安装的生产服务（SysV 或 systemd）
+scripts/setup.sh run ssrmu prod      # 以前台方式运行已安装服务（容器部署、看实时日志）
 scripts/setup.sh status ssrmu prod   # 单一目标：原样返回底层真实退出码
 scripts/setup.sh status              # 非交互汇总全部服务和环境，退出码归一为 0/1
 ```
 
-`run` 不属于统一生命周期入口：当前安装器不能安全地反推出所有已安装服务的前台主进程命令，
-因此会明确拒绝，而不会将后台 `start` 伪装成前台运行。生产环境会优先使用已安装的
-`/etc/init.d/<service>`；没有 SysV 脚本时才使用 systemd 单元。
+`run` 是 `start` 的前台版本。它不去解析 systemd 的 `ExecStart`（里面可能带未展开的变量，
+直接 exec 会静默丢参数），而是按服务分别 `exec` 已安装服务自己的前台命令。从 `setup.sh`
+到 `services/<service>.sh`、`service.sh`，再到最终的服务进程，全程都是 `exec`，始终是
+同一个 PID，因此：
+
+- 进程阻塞在前台，既不 daemonize，也不提前返回；
+- `Ctrl-C`（SIGINT）和 SIGTERM 直达服务本身，不会出现「包装 shell 挨了信号、服务却变成孤儿」；
+- 服务的退出码原样透传，不会被折叠成 0/1；
+- 日志直接走 stdout/stderr，运行期间就看得到，而不是只写进日志文件。
+
+`run` 不接管已有进程：服务已经在运行时会直接报错并提示先 `stop`。否则前台这份会和后台
+那份抢同一个端口，而抢端口报出来的错往往跟端口无关，很难查。缺少服务二进制或配置时会
+明确报错；生产环境不会下载或临时安装软件。
+
+`start`、`stop`、`restart` 在生产环境会优先使用已安装的 `/etc/init.d/<service>`；没有 SysV
+脚本时才使用 systemd 单元。
 
 服务日志和其他运行时文件放在仓库 `.run/` 目录；可通过 `FUNWALL_RUN_DIR` 指定独立目录；
 `/etc/init.d` 的查找路径可通过 `FUNWALL_INIT_DIR` 覆盖（供测试用 mock 注入）。
-并入前的旧变量名 `FUNSSR_RUN_DIR` / `FUNSSR_INIT_DIR` 仍作为兜底被识别，以免已部署的机器失效。
+`run` 查找服务二进制和配置的路径同样可以覆盖：`FUNWALL_SSR_DIR`、`FUNWALL_SSR_CONFIG`、
+`FUNWALL_SSRMU_DIR`、`FUNWALL_TROJAN_BIN`、`FUNWALL_TROJAN_CONFIG`、`FUNWALL_V2RAY_BIN`、
+`FUNWALL_V2RAY_CONFIG`。
+以上变量并入前的旧名（`FUNSSR_` 前缀）仍作为兜底被识别，以免已部署的机器失效。
 
 ### 脚本测试
 
@@ -84,9 +101,15 @@ scripts/setup.sh status              # 非交互汇总全部服务和环境，�
 bash tests/smoke_test.sh
 ```
 
-冒烟测试覆盖参数校验、`status` 默认汇总与单目标透传退出码、dev 环境 start/stop/restart、
-prod 环境的 SysV/systemd 已安装与未安装分支；全部通过 mock 的
+冒烟测试覆盖参数校验、`run` 前台命令分发、`status` 默认汇总与单目标透传退出码、
+dev 环境 start/stop/restart、prod 环境的 SysV/systemd 已安装与未安装分支；全部通过 mock 的
 `systemctl`/`init.d` 脚本执行，不依赖真实服务或 root 权限。
+
+其中「`run` 的真前台语义」一节用一个长驻的假服务实测上面那四条保证——阻塞在前台、
+服务 PID 与 `setup.sh` 的 PID 相同、SIGINT/SIGTERM 直达并透传退出码、运行期间就有输出、
+退出后不留孤儿进程——再加上「不接管已有进程」。`Ctrl-C` 用例依赖
+`env --default-signal`（GNU coreutils ≥ 8.31）来复位信号处置，因为 bash 会给后台作业屏蔽
+SIGINT；没有这个选项的机器上该用例会自动跳过，SIGTERM 用例照跑。
 
 ## 客户端推荐
 
