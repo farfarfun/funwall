@@ -2,7 +2,7 @@
 # funwall
 
 funwall 是科学上网资源索引，汇总代理服务端安装脚本、跨平台客户端与机场信息，
-并维护自建服务端脚本与统一的服务生命周期入口（原 [funSSR](https://github.com/farfarfun/funSSR) 已并入本仓库）。
+并维护自建服务端脚本与统一的服务生命周期入口。
 Python 包仅提供版本信息，方便从 PyPI 跟踪索引版本。
 
 ## 安装
@@ -30,9 +30,9 @@ print(funwall.__version__)
 | sing-box | [sing-box 一键安装脚本](https://233boy.com/sing-box/sing-box-script/) | [233boy/sing-box](https://github.com/233boy/sing-box) |
 | Xray | [Xray 一键安装脚本](https://233boy.com/xray/xray-script/) | [233boy/Xray](https://github.com/233boy/Xray) |
 
-## 自建服务端脚本（原 funSSR）
+## 自建服务端脚本
 
-`darkssr/server/` 下是本仓库自己维护的一批历史遗留交互式安装/管理器，由原 funSSR 仓库并入。
+`darkssr/server/` 下是本仓库自己维护的一批历史遗留交互式安装/管理器。
 请只在隔离的 VPS 上以 root 运行，并先审阅脚本；它们会安装软件、修改系统配置和服务单元。
 
 | 入口 | 用途 | 支持系统 | 调用方式 |
@@ -93,7 +93,7 @@ scripts/setup.sh status              # 非交互汇总全部服务和环境，�
 `run` 查找服务二进制和配置的路径同样可以覆盖：`FUNWALL_SSR_DIR`、`FUNWALL_SSR_CONFIG`、
 `FUNWALL_SSRMU_DIR`、`FUNWALL_TROJAN_BIN`、`FUNWALL_TROJAN_CONFIG`、`FUNWALL_V2RAY_BIN`、
 `FUNWALL_V2RAY_CONFIG`。
-以上变量并入前的旧名（`FUNSSR_` 前缀）仍作为兜底被识别，以免已部署的机器失效。
+以上变量把前缀换成 `FUNSSR_` 的同名形式也会被识别，优先级低于 `FUNWALL_` 前缀。
 
 ### 脚本测试
 
