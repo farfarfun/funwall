@@ -115,6 +115,7 @@ SIGINT；没有这个选项的机器上该用例会自动跳过，SIGTERM 用例
 
 | 客户端 | Windows | Linux | MAC | Android | IOS |
 | :--- | :---: | :---: | :---: | :---: | :--:| 
+| [FunClash](https://github.com/farfarfun/funclash)（farfarfun 维护） · [下载](https://github.com/farfarfun/funclash/releases/latest) | 支持 | 支持 | 支持 | 支持 | - |
 | [Flclash(推荐)](https://github.com/chen08209/FlClash)|支持  | 支持 | 支持 | 支持 | 支持 |
 | [v2rayA](https://v2raya.org) | 支持  | 支持 | 支持 | 支持 | 支持 |
 | [v2ray](https://github.com/bwgvps/v2ray-tutorial) | 支持  | - | 支持 | 支持 | 支持 |

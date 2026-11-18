@@ -4,6 +4,7 @@
 
 ### 新增
 
+- 客户端推荐表收录 farfarfun 维护的 FunClash，提供项目仓库和最新版下载链接。
 - 并入 [funSSR](https://github.com/farfarfun/funSSR) 全部内容（该仓库随之归档）：
   - `darkssr/server/` —— 自维护的 ShadowsocksR / Trojan / V2Ray(ws+tls) / BBR 交互式安装管理器；
   - `darkssr/client/config.json` —— 客户端配置样例（敏感字段为占位符）；
