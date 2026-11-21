@@ -4,6 +4,7 @@
 
 ### 新增
 
+- 机场推荐表新增“月兔VPN（Tsuki）”：公网中转，Hysteria2（UDP），起价 12 元/30 天、100 GB/30 天。价目由品牌方于 2026-11-20 提供。
 - 客户端推荐表收录 farfarfun 维护的 FunClash，提供项目仓库和最新版下载链接。
 - 并入 [funSSR](https://github.com/farfarfun/funSSR) 全部内容（该仓库随之归档）：
   - `darkssr/server/` —— 自维护的 ShadowsocksR / Trojan / V2Ray(ws+tls) / BBR 交互式安装管理器；
